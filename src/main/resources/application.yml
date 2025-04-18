@@ -1,0 +1,74 @@
+# ============================
+# 🔗 프로파일 그룹 지정
+# ============================
+spring:
+  profiles:
+    active: local  # 현재 활성화할 프로파일 (local)
+    group:
+      local: [common]  # local 환경은 common 설정도 함께 사용
+      dev: [common]
+      prod: [common]
+
+# ============================
+# 🌐 공통 설정 (common 프로필)
+# ============================
+---
+spring:
+  config:
+    activate:
+      on-profile: common  # 이 블록은 local/dev/prod 모두에서 포함됨
+
+  jpa:
+    hibernate:
+      ddl-auto: update     # 엔티티 변경사항을 DB에 반영
+    show-sql: true         # 실행되는 SQL 쿼리를 콘솔에 출력
+    properties:
+      hibernate:
+        format_sql: true   # SQL 쿼리 포매팅
+    database-platform: org.hibernate.dialect.MySQL8Dialect  # MySQL 8용 문법 설정
+
+server:
+  port: 8080               # 공통 포트 설정
+
+# ============================
+# ⚙️ local 환경 설정
+# ============================
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/boarddb?useSSL=false&serverTimezone=Asia/Seoul
+    username: root
+    password: 12341234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# ============================
+# ⚙️ dev 환경 설정
+# ============================
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:mysql://dev.db.server:3306/boarddb
+    username: admin
+    password: devpass
+
+# ============================
+# ⚙️ prod 환경 설정
+# ============================
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:mysql://prod.db.server:3306/boarddb
+    username: admin
+    password: prodpass
