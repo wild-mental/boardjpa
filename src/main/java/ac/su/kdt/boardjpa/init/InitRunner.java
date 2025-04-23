@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Profile("local") // 로컬 환경에서만 실행되도록 설정
+// local, dev 환경에서만 실행되도록 설정
+@Profile({"local", "dev"})
 public class InitRunner implements CommandLineRunner {
 
     private final BoardRepository boardRepository;

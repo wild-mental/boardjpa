@@ -3,7 +3,7 @@
 # ============================
 spring:
   profiles:
-    active: local  # 현재 활성화할 프로파일 (local)
+    active: dev  # 현재 활성화할 프로파일 (local)
     group:
       local: [common]  # local 환경은 common 설정도 함께 사용
       dev: [common]
@@ -40,7 +40,7 @@ spring:
       on-profile: local
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3307/boarddb?useSSL=false&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://127.0.0.1:3306/boarddb?useSSL=false&serverTimezone=Asia/Seoul
     username: root
     password: 12341234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -55,9 +55,9 @@ spring:
       on-profile: dev
 
   datasource:
-    url: jdbc:mysql://dev.db.server:3306/boarddb
-    username: admin
-    password: devpass
+    url: jdbc:mysql://board-mysql:3306/boarddb
+    username: user
+    password: 12341234
 
 # ============================
 # ⚙️ prod 환경 설정
