@@ -3,6 +3,7 @@ package ac.su.kdt.boardjpa.service;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.stereotype.Component;
 import ac.su.kdt.boardjpa.domain.User;
+import ac.su.kdt.boardjpa.domain.UserBMIDTO;
 import ac.su.kdt.boardjpa.domain.UserHeightWeightDTO;
 import ac.su.kdt.boardjpa.domain.UserResponseDTO;
 import ac.su.kdt.boardjpa.repository.UserRepository;
@@ -32,5 +33,11 @@ public class UserService {
         return userRepository
             .findAll(PageRequest.of(page, size))
             .map(UserHeightWeightDTO::fromEntity);
+    }
+
+    public Page<UserBMIDTO> findAllBMIDTO(int page, int size) {
+        return userRepository
+            .findAll(PageRequest.of(page, size))
+            .map(UserBMIDTO::fromEntity);
     }
 }
