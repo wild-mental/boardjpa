@@ -26,6 +26,12 @@ public class User {
     @Column
     private String email;
 
+    @Column
+    private Integer height;
+
+    @Column
+    private Integer weight;
+
     @OneToMany(
         mappedBy = "user",
         cascade = CascadeType.ALL, orphanRemoval = true,
